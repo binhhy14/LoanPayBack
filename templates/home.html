@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Loan Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Loan Prediction</h1>
+
+        <p class="subtitle">
+            Enter the applicant information to predict loan repayment.
+        </p>
+
+        <form id="loanForm">
+
+            <!-- ========================= -->
+            <!-- NUMERICAL FEATURES -->
+            <!-- ========================= -->
+
+            <div class="form-group">
+                <label for="annual_income">
+                    Annual Income
+                </label>
+
+                <input
+                    type="number"
+                    id="annual_income"
+                    name="annual_income"
+                    step="0.01"
+                    placeholder="e.g. 25496.70"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="debt_to_income_ratio">
+                    Debt-to-Income Ratio
+                </label>
+
+                <input
+                    type="number"
+                    id="debt_to_income_ratio"
+                    name="debt_to_income_ratio"
+                    step="0.001"
+                    placeholder="e.g. 0.053"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="credit_score">
+                    Credit Score
+                </label>
+
+                <input
+                    type="number"
+                    id="credit_score"
+                    name="credit_score"
+                    placeholder="e.g. 665"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="loan_amount">
+                    Loan Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="loan_amount"
+                    name="loan_amount"
+                    step="0.01"
+                    placeholder="e.g. 12184.43"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="interest_rate">
+                    Interest Rate (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="interest_rate"
+                    name="interest_rate"
+                    step="0.01"
+                    placeholder="e.g. 10.21"
+                    required
+                >
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- CATEGORICAL FEATURES -->
+            <!-- ========================= -->
+
+            <div class="form-group">
+                <label for="gender">
+                    Gender
+                </label>
+
+                <select id="gender" name="gender" required>
+                    <option value="">Select gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="marital_status">
+                    Marital Status
+                </label>
+
+                <select
+                    id="marital_status"
+                    name="marital_status"
+                    required
+                >
+                    <option value="">Select marital status</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Widowed">Widowed</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="education_level">
+                    Education Level
+                </label>
+
+                <select
+                    id="education_level"
+                    name="education_level"
+                    required
+                >
+                    <option value="">Select education</option>
+                    <option value="High School">High School</option>
+                    <option value="Bachelor's">Bachelor's</option>
+                    <option value="Master's">Master's</option>
+                    <option value="PhD">PhD</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="employment_status">
+                    Employment Status
+                </label>
+
+                <select
+                    id="employment_status"
+                    name="employment_status"
+                    required
+                >
+                    <option value="">Select employment status</option>
+                    <option value="Employed">Employed</option>
+                    <option value="Self-employed">Self-employed</option>
+                    <option value="Unemployed">Unemployed</option>
+                    <option value="Student">Student</option>
+                    <option value="Retired">Retired</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="loan_purpose">
+                    Loan Purpose
+                </label>
+
+                <select
+                    id="loan_purpose"
+                    name="loan_purpose"
+                    required
+                >
+                    <option value="">Select loan purpose</option>
+                    <option value="Business">Business</option>
+                    <option value="Car">Car</option>
+                    <option value="Debt consolidation">
+                        Debt consolidation
+                    </option>
+                    <option value="Education">Education</option>
+                    <option value="Home">Home</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Other">Other</option>
+                    <option value="Vacation">Vacation</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="grade_subgrade">
+                    Grade / Subgrade
+                </label>
+
+                <select
+                    id="grade_subgrade"
+                    name="grade_subgrade"
+                    required
+                >
+                    <option value="">Select grade</option>
+
+                    <option value="A1">A1</option>
+                    <option value="A2">A2</option>
+                    <option value="A3">A3</option>
+                    <option value="A4">A4</option>
+                    <option value="A5">A5</option>
+
+                    <option value="B1">B1</option>
+                    <option value="B2">B2</option>
+                    <option value="B3">B3</option>
+                    <option value="B4">B4</option>
+                    <option value="B5">B5</option>
+
+                    <option value="C1">C1</option>
+                    <option value="C2">C2</option>
+                    <option value="C3">C3</option>
+                    <option value="C4">C4</option>
+                    <option value="C5">C5</option>
+
+                    <option value="D1">D1</option>
+                    <option value="D2">D2</option>
+                    <option value="D3">D3</option>
+                    <option value="D4">D4</option>
+                    <option value="D5">D5</option>
+
+                    <option value="E1">E1</option>
+                    <option value="E2">E2</option>
+                    <option value="E3">E3</option>
+                    <option value="E4">E4</option>
+                    <option value="E5">E5</option>
+
+                    <option value="F1">F1</option>
+                    <option value="F2">F2</option>
+                    <option value="F3">F3</option>
+                    <option value="F4">F4</option>
+                    <option value="F5">F5</option>
+
+                </select>
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- SUBMIT -->
+            <!-- ========================= -->
+
+            <button type="submit">
+                Predict Loan
+            </button>
+
+        </form>
+
+
+        <!-- ========================= -->
+        <!-- RESULT -->
+        <!-- ========================= -->
+
+        <div id="result" class="result hidden">
+
+            <h2>Prediction Result</h2>
+
+            <p>
+                Probability:
+                <strong id="probability">-</strong>
+            </p>
+
+            <p>
+                Prediction:
+                <strong id="prediction">-</strong>
+            </p>
+
+            <p>
+                Threshold:
+                <strong id="threshold">-</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
