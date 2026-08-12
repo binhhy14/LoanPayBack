@@ -591,19 +591,6 @@ def predict_single_sample(raw_data):
         }
     }
 
-
-# ============================================================
-# HEALTH CHECK
-# ============================================================
-
-@app.route("/health", methods=["GET"])
-def health_check():
-    return jsonify({
-        "status": "online",
-        "message": "Loan prediction API is running"
-    })
-
-
 # ============================================================
 # PREDICT API
 # ============================================================
